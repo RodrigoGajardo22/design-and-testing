@@ -5,17 +5,24 @@ public class Participante {
 	private int    puntos;
 	private String nombreYApellido;
 	private int    dni;
+	private String email;
 
 	// Atributo Concurso (id)
-	public Participante(String nombreYApellido, int dni) {
+	public Participante(String nombreYApellido, int dni, String email) {
 
 		this.nombreYApellido = nombreYApellido; // Separar
 		this.dni             = dni;
-		puntos               = 0;
+		this.puntos          = 0;
+		this.email           = email;
+
 	}
 
 	public int puntos() {
 		return puntos;
+	}
+
+	public String email() {
+		return email;
 	}
 
 	public void sumarPuntos() {

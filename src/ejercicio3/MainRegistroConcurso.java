@@ -6,6 +6,8 @@ import java.util.Scanner;
 import ejercicio1.Concurso;
 import ejercicio1.Participante;
 import ejercicio1.Registrar;
+import emails.Email;
+import implementaciones.CorreoElectronico;
 import implementaciones.RegistrarParticipanteEnBD;
 
 public class MainRegistroConcurso {
@@ -16,7 +18,9 @@ public class MainRegistroConcurso {
 		System.out.println("\n");
 
 		Registrar registro = new RegistrarParticipanteEnBD();
-		Concurso  concurso = new Concurso(LocalDate.now(), LocalDate.now().plusDays(10), registro, 1);
+
+		Concurso  concurso = new Concurso(LocalDate.now(), LocalDate.now().plusDays(10), registro, 1,
+				new CorreoElectronico(new Email()));
 
 		Scanner   leer;
 		String    datos;
@@ -30,7 +34,7 @@ public class MainRegistroConcurso {
 			System.out.println("DNI: ");
 			dni = leer.nextInt();
 			System.out.println("\n");
-			Participante participante = new Participante(datos, dni);
+			Participante participante = new Participante(datos, dni, "correoDePrueba@gmail.com");
 			concurso.inscribirParticipante(participante);
 			System.out.println("\n");
 			System.out.println("Registro completo.");

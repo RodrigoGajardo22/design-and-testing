@@ -2,42 +2,36 @@ package emails;
 
 import java.util.Properties;
 
-import com.mysql.cj.Session;
-
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
 public class Email {
-	private static String       to;
-	private static String       from;
-	private final static String username = "93699ce560f514";
-	private final static String password = "5196ff03c7b4da";
-	private static String       mensaje;
-	private static String       portadaMensaje;
+
+	private final static String username = "4e62eab282296a";
+	private final static String password = "6e8c8e0f81f8ec";
 	private static String       host     = "smtp.mailtrap.io";
+
 	private static Properties   props;
 
-	public static boolean enviarCorreo(String destinatario, String miCorreo, String mensaje) {
+	public boolean enviarCorreo(String destino, String miCorreo, String mensaje) {
 		// provide recipient's email ID
-		String       to       = "jakartato@example.com";
+		String     to    = miCorreo;        // "jakartato@example.com";
 		// provide sender's email ID
-		String       from     = "jakartafrom@example.com";
+		String     from  = destino;         // "jakartafrom@example.com";
 		// provide Mailtrap's username
-		final String username = "a094ccae2cfdb3";
-		// provide Mailtrap's password
-		final String password = "82a851fcf4aa33";
+
 		// provide Mailtrap's host address
-		String       host     = "smtp.mailtrap.io";
 		// configure Mailtrap's SMTP server details
-		Properties   props    = new Properties();
+		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "2525");
 		// create the Session object
 		Session session = Session.getInstance(props, new jakarta.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -54,7 +48,7 @@ public class Email {
 			// set email subject field
 			message.setSubject("Here comes Jakarta Mail!");
 			// set the content of the email message
-			message.setText("Just discovered that Jakarta Mail is fun and easy to use");
+			message.setText(mensaje);
 			// send the email message
 			Transport.send(message);
 			System.out.println("Email Message Sent Successfully");

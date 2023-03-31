@@ -10,13 +10,16 @@ public class Concurso {
 	private LocalDate          fechaInicio, fechaFin;
 	private Registrar          planillaDeRegistro;
 	private int                ID_Concurso;
+	private Notificacion       notificacion;
 
-	public Concurso(LocalDate fechaIni, LocalDate fechaFin, Registrar planilla, int idConcurso) {
+	public Concurso(LocalDate fechaIni, LocalDate fechaFin, Registrar planilla, int idConcurso,
+			Notificacion notificacion) {
 		this.fechaInicio        = fechaIni;
 		this.fechaFin           = fechaFin;
 		this.listParticipantes  = new ArrayList<Participante>();
 		this.planillaDeRegistro = planilla;
 		this.ID_Concurso        = idConcurso;
+		this.notificacion       = notificacion;
 	}
 
 	public boolean inscribirParticipante(Participante p) {
@@ -26,6 +29,7 @@ public class Concurso {
 			listParticipantes.add(p);
 			planillaDeRegistro.registrar(" " + LocalDate.now() + " - idParticipante: " + listParticipantes.size()
 					+ " -  idConcurso: " + ID_Concurso);
+			notificacion.enviar(p.email(), "concursos@gmail.com", "Inscripcion realizada con exito.");
 			return true;
 		}
 		return false;
@@ -38,7 +42,6 @@ public class Concurso {
 
 		if (fechaInicio.equals(fechaDeHoy)) {
 			p.sumarPuntos();
-			// System.out.println(p.mostrarDatos());
 		}
 	}
 
@@ -62,8 +65,6 @@ public class Concurso {
 				System.out.println(i + " - " + p.mostrarDatos());
 				i++;
 			}
-		else
-			System.out.println("Aun no hay participantes registrados.");
 	}
 
 }
