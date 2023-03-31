@@ -11,16 +11,18 @@ import implementaciones.CorreoFake;
 
 class ConcursoTest {
 
-	private Participante p1           = new Participante("Juan Fuentes", 40635211, "juanFuentes@gmail.com");            // Puede
+	private Participante           p1           = new Participante("Juan Fuentes", 40635211, "juanFuentes@gmail.com"); // Puede
 																														// inscrirbirse
-	private Participante p2           = new Participante("Alberto Garcia", 36849859, "albertoGarcia@gmail.com");        // Se
+	private Participante           p2           = new Participante("Alberto Garcia", 36849859,
+			"albertoGarcia@gmail.com");                                                                                // Se
 																														// iscrirbirse
 																														// ysuma
-	private Participante p3           = new Participante("Cristina Entraigas", 17647852, "cristinaEntraigas@gmail.com");// No
+	private Participante           p3           = new Participante("Cristina Entraigas", 17647852,
+			"cristinaEntraigas@gmail.com");                                                                            // No
 																														// puede
 
-	private Registrar    registro     = new RegistroParticipantesEnMemoria();
-	Notificacion         notificacion = new CorreoFake();
+	RegistroParticipantesEnMemoria registro     = new RegistroParticipantesEnMemoria();
+	Notificacion                   notificacion = new CorreoFake();
 
 	@Test
 	public void testInscripcion() { // concurso abierto hace 3 dias y finaliza en 10
@@ -33,6 +35,8 @@ class ConcursoTest {
 
 		assertTrue(c1.inscribirParticipante(p1));
 		assertTrue(notificacionEnviada);
+		assertTrue(registro.correcto("" + LocalDate.now() + "|" + 1 + "|" + 3));
+
 	}
 
 	@Test

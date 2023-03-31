@@ -1,12 +1,17 @@
 package ejercicio1;
 
-import ejercicio1.Registrar;
-
 public class RegistroParticipantesEnMemoria implements Registrar {
+
+	private String datos;
 
 	public void registrar(String datos) {
 
-		System.out.println("Datos: " + datos);
+		this.datos = datos;
+	}
+
+	boolean correcto(String datosRecibidos) {
+
+		return this.datos.equals(datosRecibidos);
 	}
 
 }

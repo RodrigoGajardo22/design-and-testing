@@ -31,6 +31,7 @@ public class Concurso {
 			notificacion.enviar(p.email(), "concursos@gmail.com", "Inscripcion realizada con exito.");
 			return true;
 		}
+
 		return false;
 
 	}
