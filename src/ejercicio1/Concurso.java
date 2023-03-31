@@ -27,8 +27,7 @@ public class Concurso {
 		if (puedeInscribirse()) {
 			verificarFechaYsumarPuntos(p);
 			listParticipantes.add(p);
-			planillaDeRegistro.registrar(" " + LocalDate.now() + " - idParticipante: " + listParticipantes.size()
-					+ " -  idConcurso: " + ID_Concurso);
+			planillaDeRegistro.registrar("" + LocalDate.now() + "|" + listParticipantes.size() + "|" + ID_Concurso);
 			notificacion.enviar(p.email(), "concursos@gmail.com", "Inscripcion realizada con exito.");
 			return true;
 		}

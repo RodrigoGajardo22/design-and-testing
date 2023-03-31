@@ -43,13 +43,14 @@ public class RegistrarParticipanteEnBD implements Registrar {
 
 		this.connect();
 
+		String arreglo[] = separarDatos(datos);
 		try {
 			PreparedStatement statement = conn // "INSERT INTO participante(Nombre,id_part,DNI,Puntos)--> van los campos
 												// de la tabla
-					.prepareStatement("INSERT INTO participante(informacion) " + "VALUES (?)");
-			statement.setString(1, datos); // campos
-			// statement.setString(2, datos);
-			// statement.setString(3, datos);
+					.prepareStatement("INSERT INTO participante2(Fecha,IdParticipante,IdConcurso) " + "VALUES (?,?,?)");
+			statement.setString(1, arreglo[0]); // campos
+			statement.setString(2, arreglo[1]);
+			statement.setString(3, arreglo[2]);
 			// statement.setString(4, datos);
 			// System.out.println("Se conecto");
 			statement.executeUpdate(); //
@@ -59,6 +60,16 @@ public class RegistrarParticipanteEnBD implements Registrar {
 		} finally {
 			this.disconnect();
 		}
+
+	}
+
+	private String[] separarDatos(String datos) {
+
+		String   separados[] = datos.split("\\|");
+
+		String[] arreglo     = { separados[0], separados[1], separados[2] };
+
+		return arreglo;
 
 	}
 }
